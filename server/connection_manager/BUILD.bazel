@@ -1,0 +1,12 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "connection_manager",
+    srcs = [
+        "connection_manager.go",
+        "session.go",
+        "transport.go",
+    ],
+    importpath = "multiplayer/server/connection_manager",
+    visibility = ["//visibility:public"],
+)

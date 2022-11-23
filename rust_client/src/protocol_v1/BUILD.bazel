@@ -1,0 +1,11 @@
+load("@rules_rust//rust:defs.bzl", "rust_library")
+
+rust_library(
+    name = "protocol_v1",
+    srcs = ["lib.rs","protocol.rs"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pbtypes:world_sync_rust", 
+        "//rust_client/src/connection:connect",
+    ]
+)

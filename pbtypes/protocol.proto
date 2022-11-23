@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+message ProtocolInit{
+  uint32 session_id = 1;
+}
+
+message ClientMsg{
+  uint32 seq_num = 1;
+  oneof msg{
+    ProtocolInit init = 2;
+  }
+}
