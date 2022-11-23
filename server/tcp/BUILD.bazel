@@ -2,7 +2,10 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
 go_library(
     name = "tcp",
-    srcs = ["tcp_connection.go"],
+    srcs = [
+        "tcp_connection.go",
+        "tcp_manager.go",
+    ],
     importpath = "multiplayer/server/tcp",
     visibility = ["//visibility:public"],
     deps = ["//server/connection_manager"],

@@ -98,15 +98,16 @@ load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_depe
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
 load("//:deps.bzl", "go_dependencies")
 
-# gazelle:repository_macro deps.bzl%go_dependencies
-go_dependencies()
-
-gazelle_dependencies()
-
 go_repository(
     name = "org_golang_x_xerrors",
     build_file_proto_mode = "disable_global",
     importpath = "golang.org/x/xerrors",
-    sum = "h1:E7g+9GITq07hpfrRu66IVDexMakfv52eLZ2CXBWiKr4=",
-    version = "v0.0.0-20191204190536-9bdfabe68543",
+    sum = "h1:H2TDz8ibqkAF6YGhCdN3jS9O0/s90v0rJh3X/OLHEUk=",
+    version = "v0.0.0-20220907171357-04be3eba64a2",
 )
+
+# gazelle:repository_macro deps.bzl%go_dependencies
+go_dependencies()
+
+gazelle_dependencies()
+#gazelle:repository go_repository name=org_golang_x_xerrors importpath=golang.org/x/xerrors

@@ -24,7 +24,7 @@ go_proto_library(
 
 go_library(
     name = "pbtypes",
-    embed = [":test_go_proto"],
+    embed = [":multiplayer_go_proto"],
     importpath = "multiplayer/pbtypes",
     visibility = ["//visibility:public"],
 )
@@ -55,6 +55,11 @@ go_library(
     visibility = ["//visibility:public"],
 )
 
-
-
-
+proto_library(
+    name = "multiplayer_proto",
+    srcs = [
+        "protocol.proto",
+        "test.proto",
+    ],
+    visibility = ["//visibility:public"],
+)

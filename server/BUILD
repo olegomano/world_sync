@@ -19,13 +19,6 @@ gazelle(
     command = "update-repos",
 )
 
-go_library(
-    name = "lib",
-    srcs = ["main.go"],
-    importpath = "",
-    visibility = ["//visibility:private"],
-)
-
 go_binary(
     name = "server",
     embed = [":server_lib"],
@@ -39,7 +32,6 @@ go_library(
     visibility = ["//visibility:private"],
     deps = [
         "//server/connection_manager",
-        "//server/http",
         "//server/tcp",
     ],
 )
