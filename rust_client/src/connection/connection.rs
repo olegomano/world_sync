@@ -8,35 +8,14 @@ pub struct ConnectionParams{
 
 pub trait IConnection<T>{
     fn new(addr : &str) -> Option<T>;
+}
+
+pub trait ITransport{
     fn Send(&mut self, data : &[u8]) -> bool;
     fn Close(&mut self);
+    fn Read(&mut self, data : &mut [u8]) -> usize;
 }
 
-
-pub struct ProtocolV1<T : IConnection<T>>{
-    connection : T
-}
-
-impl<T : IConnection<T>> ProtocolV1<T> {
-    pub fn new(addr : &str) -> Option<Self>{
-        match T::new(addr){
-            Some(c) => {
-                return Some(
-                    Self{
-                        connection : c
-                    }
-                )
-            },
-            None => {
-                return None;
-            }
-
-        }
-    }
-        
-    pub fn Send(&mut self,data : &[u8]) -> bool{
-        return self.connection.Send(data);
-    }
-}
-
+pub trait BaseConnection<T> : IConnection<T>  + ITransport + std::marker::Send + std::marker::Sync {} 
+impl<T : IConnection<T> + ITransport + std::marker::Send + std::marker::Sync>  BaseConnection<T> for T {}
 

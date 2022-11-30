@@ -1,16 +1,27 @@
-use connect::connection::IConnection;
+use connect::connection::BaseConnection;
+use std::thread;
 
-pub struct ProtocolV1<T : IConnection<T>>{
-    connection : T
+
+
+struct ProtocolV1State<T : BaseConnection<T>> {
+    connection : std::sync::Arc<T>
 }
 
-impl<T : IConnection<T>> ProtocolV1<T> {
+
+pub struct ProtocolV1<T : BaseConnection<T>> {
+    state : ProtocolV1State<T>
+}
+
+impl<T : BaseConnection<T>> ProtocolV1<T> {
     pub fn new(addr : &str) -> Option<Self>{
         match T::new(addr){
             Some(c) => {
                 return Some(
                     Self{
-                        connection : c
+                        state : ProtocolV1State::<T>{
+                            connection : std::sync::Arc::new(c)
+                                
+                        }
                     }
                 )
             },
@@ -20,10 +31,9 @@ impl<T : IConnection<T>> ProtocolV1<T> {
 
         }
     }
-        
-    pub fn Send(&mut self,data : &[u8]) -> bool{
-        return self.connection.Send(data);
+            
+    pub fn SendInit(&mut self) -> bool{
+        let connection = self.state.connection.clone();
+        return true;
     }
 }
-
-
