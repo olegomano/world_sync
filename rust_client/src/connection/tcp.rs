@@ -1,5 +1,6 @@
 use std::net::TcpStream;
-use crate::connection::ITransport;
+use crate::connection::ITxTransport;
+use crate::connection::IRxTransport;
 use crate::connection::IConnection;
 use std::io::Write;
 use std::io::Read;
@@ -24,20 +25,32 @@ impl IConnection<TcpConnection> for TcpConnection{
             } 
         }
     }
-}
-
-impl ITransport for TcpConnection{
-      fn Send(&mut self,data : &[u8]) -> bool{
-        self.tcp.write(data);
-        return true;
-    }
 
     fn Close(&mut self){
-
+    }
+    
+    fn GetTx(&mut self) -> std::boxed::Box<dyn ITxTransport>{
+        return std::boxed::Box::new(self.tcp.try_clone().unwrap());
     }
 
+    fn GetRx(&mut self) -> std::boxed::Box<dyn IRxTransport>{
+        return std::boxed::Box::new(self.tcp.try_clone().unwrap());
+    }
+
+
+}
+
+impl ITxTransport for std::net::TcpStream{
+      fn Send(&mut self,data : &[u8]) -> bool{
+        self.write(data);
+        return true;
+    }
+}
+
+
+impl IRxTransport for std::net::TcpStream{
     fn Read(&mut self, data : &mut [u8]) -> usize {
-        let res = self.tcp.read(data);
+        let res = self.read(data);
         return res.unwrap();
     }
 }
