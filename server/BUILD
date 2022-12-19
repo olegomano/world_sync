@@ -31,7 +31,6 @@ go_library(
     importpath = "multiplayer/server",
     visibility = ["//visibility:private"],
     deps = [
-        "//server/connection_manager",
         "//server/scheduler",
         "//server/tcp",
     ],
