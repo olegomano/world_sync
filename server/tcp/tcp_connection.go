@@ -1,43 +1,73 @@
 package tcp
 import (
   "net"
+  "os"
+  "fmt"
 )
-import "multiplayer/server/connection_manager"
 
+const (
+  HOST = "127.0.0.1"
+  PORT = "9001"
+  TYPE = "tcp"
+)
 
-type TcpSession struct {
+type TcpManager struct {
+  config TcpManagerConfig
+}
+
+type TcpConnection struct{
   connection net.Conn
-  handler connection_manager.ConnectionDataHandler
 }
 
-type PendingTcpSession struct {
-  connection net.Conn
+func (self* TcpConnection) Uuid() string {
+  return ""
 }
 
-func CreatePendingTcpSession(conn net.Conn) connection_manager.IPendingConnection{
-  return &PendingTcpSession{ connection : conn}
+func (self* TcpConnection) Write(data []byte) bool {
+  return false
+}
+
+func (self* TcpConnection) Read(data []byte ) (int,bool){
+   return 0,false
+}
+
+func (self* TcpConnection) Close(){
+
+}
+
+func (self* TcpConnection) State() int {
+  return 0
 }
 
 
-func HandleSession(session* TcpSession) {
+type NewTcpConnectionHandler func(TcpConnection) 
+type TcpManagerConfig struct{
+  Tcp_opened_handler NewTcpConnectionHandler
+}
+
+func CreateTcpManager(config TcpManagerConfig) TcpManager {
+  var res = TcpManager{
+    config : config,
+  }
+  return res
+}
+
+func (self* TcpManager) Start(){
+  self.connectionListener()
+}
+
+
+func (self* TcpManager) connectionListener(){
+  connection, err := net.Listen(TYPE, HOST+":"+PORT)
+  if err != nil {
+    fmt.Println("Failed start tcp server")
+    os.Exit(1)
+  } 
   for{
-    buf := make([]byte, 1024)
-    session.connection.Read(buf)
-    session.handler(session,buf)
+    c,_ := connection.Accept()
+    var tcp_connection = TcpConnection{
+      connection : c,
+    }
+    self.config.Tcp_opened_handler(tcp_connection)
   }
 }
-
-func (pending_session* PendingTcpSession) Create(handler connection_manager.ConnectionDataHandler) connection_manager.IConnection {
-  session := TcpSession{
-    connection : pending_session.connection,
-    handler : handler,
-  }
-  go HandleSession(&session)
-  return &session
-}
-
-
-func (session* TcpSession) Send(data []byte) {
-  session.connection.Write(data)
-}
-

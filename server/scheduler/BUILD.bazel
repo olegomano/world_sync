@@ -1,0 +1,11 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+  name = "scheduler",
+  srcs = [
+    "scheduler.go",
+    "connection.go"
+  ],
+  importpath = "multiplayer/server/scheduler",
+  visibility = ["//visibility:public"],
+)

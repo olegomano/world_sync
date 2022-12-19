@@ -32,6 +32,7 @@ go_library(
     visibility = ["//visibility:private"],
     deps = [
         "//server/connection_manager",
+        "//server/scheduler",
         "//server/tcp",
     ],
 )
