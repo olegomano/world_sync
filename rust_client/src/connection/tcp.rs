@@ -27,8 +27,9 @@ impl IConnection<TcpConnection> for TcpConnection{
     }
 
     fn Close(&mut self){
+        
     }
-    
+
     fn GetTx(&mut self) -> std::boxed::Box<dyn ITxTransport>{
         return std::boxed::Box::new(self.tcp.try_clone().unwrap());
     }
@@ -36,12 +37,11 @@ impl IConnection<TcpConnection> for TcpConnection{
     fn GetRx(&mut self) -> std::boxed::Box<dyn IRxTransport>{
         return std::boxed::Box::new(self.tcp.try_clone().unwrap());
     }
-
-
 }
 
 impl ITxTransport for std::net::TcpStream{
       fn Send(&mut self,data : &[u8]) -> bool{
+        println!("Wrote bytes {}",data.len());
         self.write(data);
         return true;
     }

@@ -9,6 +9,8 @@ rust_library(
     visibility = ["//visibility:public"],
     deps = [
         "//pbtypes:world_sync_rust",
+        "//rust_client/cargo:byteorder",
+        "//rust_client/cargo:protobuf",
         "//rust_client/src/connection:connect",
     ],
 )

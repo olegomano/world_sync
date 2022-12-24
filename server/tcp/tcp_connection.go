@@ -1,8 +1,10 @@
 package tcp
 import (
   "net"
-  "os"
   "fmt"
+  "bufio"
+  "io" 
+  "encoding/binary"
 )
 
 const (
@@ -11,12 +13,16 @@ const (
   TYPE = "tcp"
 )
 
-type TcpManager struct {
-  config TcpManagerConfig
-}
-
 type TcpConnection struct{
   connection net.Conn
+  reader* bufio.Reader
+}
+
+func NewTcpConnection(connection net.Conn) TcpConnection {
+  return TcpConnection{
+    connection : connection,
+    reader : bufio.NewReader(connection),
+  }
 }
 
 func (self* TcpConnection) Uuid() string {
@@ -28,7 +34,21 @@ func (self* TcpConnection) Write(data []byte) bool {
 }
 
 func (self* TcpConnection) Read(data []byte ) (int,bool){
-   return 0,false
+  var msg_len int32
+
+  err := binary.Read(self.reader,binary.BigEndian,&msg_len)
+  if err != nil {
+    fmt.Println("read error:", err)
+    return 0,true
+  }
+  
+  read_bytes, err := io.ReadFull(self.reader,data[0:msg_len])
+  if err != nil{
+    fmt.Println("read error:", err)
+    return 0,true
+  }
+
+  return read_bytes,false
 }
 
 func (self* TcpConnection) Close(){
@@ -40,34 +60,4 @@ func (self* TcpConnection) State() int {
 }
 
 
-type NewTcpConnectionHandler func(TcpConnection) 
-type TcpManagerConfig struct{
-  Tcp_opened_handler NewTcpConnectionHandler
-}
 
-func CreateTcpManager(config TcpManagerConfig) TcpManager {
-  var res = TcpManager{
-    config : config,
-  }
-  return res
-}
-
-func (self* TcpManager) Start(){
-  self.connectionListener()
-}
-
-
-func (self* TcpManager) connectionListener(){
-  connection, err := net.Listen(TYPE, HOST+":"+PORT)
-  if err != nil {
-    fmt.Println("Failed start tcp server")
-    os.Exit(1)
-  } 
-  for{
-    c,_ := connection.Accept()
-    var tcp_connection = TcpConnection{
-      connection : c,
-    }
-    self.config.Tcp_opened_handler(tcp_connection)
-  }
-}

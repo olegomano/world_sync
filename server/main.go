@@ -11,6 +11,7 @@ func main() {
   var scheduler_instance = scheduler.Create(scheduler.SchedulerConfig{}) 
   var tcp_manager = tcp.CreateTcpManager(tcp.TcpManagerConfig{
     Tcp_opened_handler : func (tcp_connection  tcp.TcpConnection){
+      fmt.Println("New tcp connection opened")
       scheduler_instance.AddConnection(&tcp_connection)
     },
   })

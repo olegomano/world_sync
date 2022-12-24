@@ -1,7 +1,9 @@
 package scheduler
 import (
-"fmt"
+  "fmt"
+	"google.golang.org/protobuf/proto"
 )
+import "multiplayer/pbtypes"
 
 type SchedulerConfig struct{
 
@@ -31,7 +33,8 @@ func Create(config SchedulerConfig) Scheduler{
 }
 
 func (self* Scheduler) AddConnection(connection IConnection) {
-  
+  fmt.Println("New connection has been added ", connection)
+  self.pending_connections <- connection
 }
 
 func (self* Scheduler) CloseConnection(connection IConnection){
@@ -46,8 +49,8 @@ func (self* Scheduler) MainThread() {
   for{
     select{
       case connection := <- self.pending_connections:
-        fmt.Println("Got new pending connection")
-        go self.Reader(connection)
+        fmt.Println("Starting read thread for connection ", connection)
+        go self.reader(connection)
       case connection := <- self.destroyed_connections:
         fmt.Println("Connection has been destroyed ", connection)
       case connection := <- self.pending_interrupts:
@@ -68,13 +71,23 @@ func (self* Scheduler) RxThread() {
 }
 
 
-func(self* Scheduler) Reader(conn IConnection){
+func(self* Scheduler) reader(conn IConnection){
+  data := make([]byte, 4096)
+  
   for{
-    data := make([]byte, 4096)
-	  _, err := conn.Read(data)
+	  msg_len, err := conn.Read(data)
     if err == true{
       fmt.Println("Read() has returned error, closing connection")
       self.destroyed_connections <- conn
+      return
     }
+    msg := &pbtypes.ClientMsg{}
+    if err := proto.Unmarshal(data[0:msg_len], msg); err != nil {
+      fmt.Println("Failed to parse message:", err)
+      continue
+    }
+    fmt.Println(msg)
   }
 }
+
+

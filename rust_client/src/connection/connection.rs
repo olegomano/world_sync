@@ -14,7 +14,6 @@ pub trait IRxTransport : std::marker::Send + std::marker::Sync{
     fn Read(&mut self, data : &mut [u8]) -> usize;
 }
 
-
 pub trait IConnection<T>{
     fn new(addr : &str) -> Option<T>;
     fn Close(&mut self);
@@ -22,9 +21,5 @@ pub trait IConnection<T>{
     fn GetTx(&mut self) -> Box<dyn ITxTransport>; 
 }
 
-
-
 pub trait BaseConnection<T> : IConnection<T>  + std::marker::Send + std::marker::Sync {}
 impl<T : IConnection<T> + std::marker::Send + std::marker::Sync>  BaseConnection<T> for T {}
-
-

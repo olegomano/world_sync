@@ -1,0 +1,112 @@
+"""
+@generated
+cargo-raze generated Bazel file.
+
+DO NOT EDIT! Replaced on runs of cargo-raze
+"""
+
+package(default_visibility = ["//visibility:public"])
+
+licenses([
+    "notice",  # See individual crates for specific licenses
+])
+
+# Aliased targets
+alias(
+    name = "byteorder",
+    actual = "@rust_client__byteorder__1_4_3//:byteorder",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
+    name = "grpc",
+    actual = "@rust_client__grpc__0_6_2//:grpc",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
+    name = "grpc_compiler",
+    actual = "@rust_client__grpc_compiler__0_6_2//:grpc_compiler",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
+    name = "protobuf",
+    actual = "@rust_client__protobuf__2_8_2//:protobuf",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
+    name = "cargo_bin_protoc_gen_rust",
+    actual = "@rust_client__protobuf_codegen__2_8_2//:cargo_bin_protoc_gen_rust",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
+    name = "protobuf_codegen",
+    actual = "@rust_client__protobuf_codegen__2_8_2//:protobuf_codegen",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
+    name = "protoc_bin_vendored",
+    actual = "@rust_client__protoc_bin_vendored__2_27_3//:protoc_bin_vendored",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
+    name = "tls_api",
+    actual = "@rust_client__tls_api__0_1_22//:tls_api",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
+    name = "tls_api_stub",
+    actual = "@rust_client__tls_api_stub__0_1_22//:tls_api_stub",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+# Export file for Stardoc support
+exports_files(
+    glob([
+        "**/*.bazel",
+        "**/*.bzl",
+    ]),
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "srcs",
+    srcs = glob([
+        "**/*.bazel",
+        "**/*.bzl",
+    ]),
+    visibility = ["//visibility:public"],
+)

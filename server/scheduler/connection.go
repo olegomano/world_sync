@@ -14,9 +14,3 @@ type IConnection interface {
   State() int
 }
 
-type IScheduler interface {
-  AddConnection(connection IConnection)
-}
-
-
-
