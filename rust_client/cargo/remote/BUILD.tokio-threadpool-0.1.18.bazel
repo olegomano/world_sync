@@ -65,7 +65,7 @@ rust_library(
         "@rust_client__lazy_static__1_4_0//:lazy_static",
         "@rust_client__log__0_4_17//:log",
         "@rust_client__num_cpus__1_15_0//:num_cpus",
-        "@rust_client__slab__0_4_7//:slab",
+        "@rust_client__slab__0_4_8//:slab",
         "@rust_client__tokio_executor__0_1_10//:tokio_executor",
     ],
 )

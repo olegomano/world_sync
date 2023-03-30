@@ -229,11 +229,11 @@ def rust_client_fetch_remote_crates():
 
     maybe(
         http_archive,
-        name = "rust_client__libc__0_2_139",
-        url = "https://crates.io/api/v1/crates/libc/0.2.139/download",
+        name = "rust_client__libc__0_2_140",
+        url = "https://crates.io/api/v1/crates/libc/0.2.140/download",
         type = "tar.gz",
-        strip_prefix = "libc-0.2.139",
-        build_file = Label("//rust_client/cargo/remote:BUILD.libc-0.2.139.bazel"),
+        strip_prefix = "libc-0.2.140",
+        build_file = Label("//rust_client/cargo/remote:BUILD.libc-0.2.140.bazel"),
     )
 
     maybe(
@@ -319,6 +319,78 @@ def rust_client_fetch_remote_crates():
 
     maybe(
         http_archive,
+        name = "rust_client__num__0_4_0",
+        url = "https://crates.io/api/v1/crates/num/0.4.0/download",
+        type = "tar.gz",
+        strip_prefix = "num-0.4.0",
+        build_file = Label("//rust_client/cargo/remote:BUILD.num-0.4.0.bazel"),
+    )
+
+    maybe(
+        http_archive,
+        name = "rust_client__num_bigint__0_4_3",
+        url = "https://crates.io/api/v1/crates/num-bigint/0.4.3/download",
+        type = "tar.gz",
+        strip_prefix = "num-bigint-0.4.3",
+        build_file = Label("//rust_client/cargo/remote:BUILD.num-bigint-0.4.3.bazel"),
+    )
+
+    maybe(
+        http_archive,
+        name = "rust_client__num_complex__0_4_3",
+        url = "https://crates.io/api/v1/crates/num-complex/0.4.3/download",
+        type = "tar.gz",
+        strip_prefix = "num-complex-0.4.3",
+        build_file = Label("//rust_client/cargo/remote:BUILD.num-complex-0.4.3.bazel"),
+    )
+
+    maybe(
+        http_archive,
+        name = "rust_client__num_derive__0_3_3",
+        url = "https://crates.io/api/v1/crates/num-derive/0.3.3/download",
+        type = "tar.gz",
+        strip_prefix = "num-derive-0.3.3",
+        build_file = Label("//rust_client/cargo/remote:BUILD.num-derive-0.3.3.bazel"),
+    )
+
+    maybe(
+        http_archive,
+        name = "rust_client__num_integer__0_1_45",
+        url = "https://crates.io/api/v1/crates/num-integer/0.1.45/download",
+        type = "tar.gz",
+        strip_prefix = "num-integer-0.1.45",
+        build_file = Label("//rust_client/cargo/remote:BUILD.num-integer-0.1.45.bazel"),
+    )
+
+    maybe(
+        http_archive,
+        name = "rust_client__num_iter__0_1_43",
+        url = "https://crates.io/api/v1/crates/num-iter/0.1.43/download",
+        type = "tar.gz",
+        strip_prefix = "num-iter-0.1.43",
+        build_file = Label("//rust_client/cargo/remote:BUILD.num-iter-0.1.43.bazel"),
+    )
+
+    maybe(
+        http_archive,
+        name = "rust_client__num_rational__0_4_1",
+        url = "https://crates.io/api/v1/crates/num-rational/0.4.1/download",
+        type = "tar.gz",
+        strip_prefix = "num-rational-0.4.1",
+        build_file = Label("//rust_client/cargo/remote:BUILD.num-rational-0.4.1.bazel"),
+    )
+
+    maybe(
+        http_archive,
+        name = "rust_client__num_traits__0_2_15",
+        url = "https://crates.io/api/v1/crates/num-traits/0.2.15/download",
+        type = "tar.gz",
+        strip_prefix = "num-traits-0.2.15",
+        build_file = Label("//rust_client/cargo/remote:BUILD.num-traits-0.2.15.bazel"),
+    )
+
+    maybe(
+        http_archive,
         name = "rust_client__num_cpus__1_15_0",
         url = "https://crates.io/api/v1/crates/num_cpus/1.15.0/download",
         type = "tar.gz",
@@ -346,6 +418,16 @@ def rust_client_fetch_remote_crates():
 
     maybe(
         http_archive,
+        name = "rust_client__proc_macro2__1_0_49",
+        url = "https://crates.io/api/v1/crates/proc-macro2/1.0.49/download",
+        type = "tar.gz",
+        sha256 = "57a8eca9f9c4ffde41714334dee777596264c7825420f521abc92b5b5deb63a5",
+        strip_prefix = "proc-macro2-1.0.49",
+        build_file = Label("//rust_client/cargo/remote:BUILD.proc-macro2-1.0.49.bazel"),
+    )
+
+    maybe(
+        http_archive,
         name = "rust_client__protobuf__2_8_2",
         url = "https://crates.io/api/v1/crates/protobuf/2.8.2/download",
         type = "tar.gz",
@@ -369,6 +451,16 @@ def rust_client_fetch_remote_crates():
         type = "tar.gz",
         strip_prefix = "protoc-bin-vendored-2.27.3",
         build_file = Label("//rust_client/cargo/remote:BUILD.protoc-bin-vendored-2.27.3.bazel"),
+    )
+
+    maybe(
+        http_archive,
+        name = "rust_client__quote__1_0_23",
+        url = "https://crates.io/api/v1/crates/quote/1.0.23/download",
+        type = "tar.gz",
+        sha256 = "8856d8364d252a14d474036ea1358d63c9e6965c8e5c1885c18f73d70bff9c7b",
+        strip_prefix = "quote-1.0.23",
+        build_file = Label("//rust_client/cargo/remote:BUILD.quote-1.0.23.bazel"),
     )
 
     maybe(
@@ -445,11 +537,11 @@ def rust_client_fetch_remote_crates():
 
     maybe(
         http_archive,
-        name = "rust_client__slab__0_4_7",
-        url = "https://crates.io/api/v1/crates/slab/0.4.7/download",
+        name = "rust_client__slab__0_4_8",
+        url = "https://crates.io/api/v1/crates/slab/0.4.8/download",
         type = "tar.gz",
-        strip_prefix = "slab-0.4.7",
-        build_file = Label("//rust_client/cargo/remote:BUILD.slab-0.4.7.bazel"),
+        strip_prefix = "slab-0.4.8",
+        build_file = Label("//rust_client/cargo/remote:BUILD.slab-0.4.8.bazel"),
     )
 
     maybe(
@@ -459,6 +551,16 @@ def rust_client_fetch_remote_crates():
         type = "tar.gz",
         strip_prefix = "smallvec-0.6.14",
         build_file = Label("//rust_client/cargo/remote:BUILD.smallvec-0.6.14.bazel"),
+    )
+
+    maybe(
+        http_archive,
+        name = "rust_client__syn__1_0_107",
+        url = "https://crates.io/api/v1/crates/syn/1.0.107/download",
+        type = "tar.gz",
+        sha256 = "1f4064b5b16e03ae50984a5a8ed5d4f8803e6bc1fd170a3cda91a1be4b18e3f5",
+        strip_prefix = "syn-1.0.107",
+        build_file = Label("//rust_client/cargo/remote:BUILD.syn-1.0.107.bazel"),
     )
 
     maybe(
@@ -630,6 +732,16 @@ def rust_client_fetch_remote_crates():
         type = "tar.gz",
         strip_prefix = "tokio-uds-0.2.7",
         build_file = Label("//rust_client/cargo/remote:BUILD.tokio-uds-0.2.7.bazel"),
+    )
+
+    maybe(
+        http_archive,
+        name = "rust_client__unicode_ident__1_0_6",
+        url = "https://crates.io/api/v1/crates/unicode-ident/1.0.6/download",
+        type = "tar.gz",
+        sha256 = "84a22b9f218b40614adcb3f4ff08b703773ad44fa9423e4e0d346d5db86e4ebc",
+        strip_prefix = "unicode-ident-1.0.6",
+        build_file = Label("//rust_client/cargo/remote:BUILD.unicode-ident-1.0.6.bazel"),
     )
 
     maybe(

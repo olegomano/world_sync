@@ -4,9 +4,52 @@ message ProtocolInit{
   uint32 session_id = 1;
 }
 
+message Vector3d{
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+
+message EntityState{
+  Vector3d position = 1;
+  string display_name = 2;
+  string asset_id = 3;
+  //max field number per message is 64
+}
+
+//////////////ClientMsg//////////////////////
+message EntityUpdate{
+  message Entity{
+    uint64 uuid = 1;
+    EntityState state = 2;
+    uint64 field_mask = 3;
+  }
+  repeated Entity update = 1;
+}
+
+
+message CreateClient{
+  string uuid = 1;
+} 
+
+
+message AssetChunk{
+   
+}
+
+message AssetRequest{
+
+}
+
 message ClientMsg{
   uint32 seq_num = 1;
+  uint64 time = 2;
+  string uuid = 3;  
   oneof msg{
-    ProtocolInit init = 2;
+    ProtocolInit init = 4;
+    EntityUpdate entity_update = 5;
+    AssetChunk asset_chunk = 6;
+    AssetRequest asset_request = 7;
+    CreateClient create_client = 8;
   }
 }

@@ -71,7 +71,7 @@ rust_library(
             "@rules_rust//rust/platform:x86_64-linux-android",
             "@rules_rust//rust/platform:x86_64-unknown-freebsd",
         ): [
-            "@rust_client__libc__0_2_139//:libc",
+            "@rust_client__libc__0_2_140//:libc",
         ],
         "//conditions:default": [],
     }),

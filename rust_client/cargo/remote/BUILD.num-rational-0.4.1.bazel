@@ -38,17 +38,18 @@ load(
 )
 
 cargo_build_script(
-    name = "libc_build_script",
+    name = "num_rational_build_script",
     srcs = glob(["**/*.rs"]),
     build_script_env = {
     },
     crate_features = [
-        "default",
+        "num-bigint",
+        "num-bigint-std",
         "std",
     ],
     crate_root = "build.rs",
     data = glob(["**"]),
-    edition = "2015",
+    edition = "2018",
     rustc_flags = [
         "--cap-lints=allow",
     ],
@@ -56,35 +57,38 @@ cargo_build_script(
         "cargo-raze",
         "manual",
     ],
-    version = "0.2.139",
+    version = "0.4.1",
     visibility = ["//visibility:private"],
     deps = [
+        "@rust_client__autocfg__1_1_0//:autocfg",
     ],
 )
 
 rust_library(
-    name = "libc",
+    name = "num_rational",
     srcs = glob(["**/*.rs"]),
     crate_features = [
-        "default",
+        "num-bigint",
+        "num-bigint-std",
         "std",
     ],
     crate_root = "src/lib.rs",
     data = [],
-    edition = "2015",
+    edition = "2018",
     rustc_flags = [
         "--cap-lints=allow",
     ],
     tags = [
         "cargo-raze",
-        "crate-name=libc",
+        "crate-name=num-rational",
         "manual",
     ],
-    version = "0.2.139",
+    version = "0.4.1",
     # buildifier: leave-alone
     deps = [
-        ":libc_build_script",
+        ":num_rational_build_script",
+        "@rust_client__num_bigint__0_4_3//:num_bigint",
+        "@rust_client__num_integer__0_1_45//:num_integer",
+        "@rust_client__num_traits__0_2_15//:num_traits",
     ],
 )
-
-# Unsupported target "const_fn" with type "test" omitted

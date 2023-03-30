@@ -57,7 +57,7 @@ rust_library(
         "@rust_client__mio__0_6_23//:mio",
         "@rust_client__num_cpus__1_15_0//:num_cpus",
         "@rust_client__parking_lot__0_9_0//:parking_lot",
-        "@rust_client__slab__0_4_7//:slab",
+        "@rust_client__slab__0_4_8//:slab",
         "@rust_client__tokio_executor__0_1_10//:tokio_executor",
         "@rust_client__tokio_io__0_1_13//:tokio_io",
         "@rust_client__tokio_sync__0_1_8//:tokio_sync",

@@ -40,6 +40,33 @@ alias(
 )
 
 alias(
+    name = "num",
+    actual = "@rust_client__num__0_4_0//:num",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
+    name = "num_derive",
+    actual = "@rust_client__num_derive__0_3_3//:num_derive",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
+    name = "num_traits",
+    actual = "@rust_client__num_traits__0_2_15//:num_traits",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
     name = "protobuf",
     actual = "@rust_client__protobuf__2_8_2//:protobuf",
     tags = [

@@ -5,6 +5,13 @@ import (
   "fmt"
 )
 
+const (
+  HOST = "0.0.0.0"
+  PORT = "9001"
+  TYPE = "tcp"
+)
+
+
 type TcpManager struct {
   config TcpManagerConfig
 }

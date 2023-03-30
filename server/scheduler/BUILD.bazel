@@ -5,6 +5,7 @@ go_library(
     srcs = [
         "connection.go",
         "scheduler.go",
+        "client.go"
     ],
     importpath = "multiplayer/server/scheduler",
     visibility = ["//visibility:public"],

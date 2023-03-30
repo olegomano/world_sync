@@ -51,7 +51,7 @@ rust_library(
         "@rust_client__bytes__0_4_12//:bytes",
         "@rust_client__futures__0_1_31//:futures",
         "@rust_client__iovec__0_1_4//:iovec",
-        "@rust_client__libc__0_2_139//:libc",
+        "@rust_client__libc__0_2_140//:libc",
         "@rust_client__log__0_3_9//:log",
         "@rust_client__mio__0_6_23//:mio",
         "@rust_client__mio_uds__0_6_8//:mio_uds",

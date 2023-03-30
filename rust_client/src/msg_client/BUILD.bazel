@@ -1,0 +1,19 @@
+load("@rules_rust//rust:defs.bzl", "rust_library")
+
+rust_library(
+    name = "msg_service",
+    srcs = [
+        "lib.rs",
+        "tcp.rs",
+        "client.rs",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//rust_client/cargo:protobuf",
+        "//rust_client/cargo:num",
+        "//rust_client/cargo:num_traits",
+    ],
+    proc_macro_deps = [
+        "//rust_client/cargo:num_derive",
+    ]
+)

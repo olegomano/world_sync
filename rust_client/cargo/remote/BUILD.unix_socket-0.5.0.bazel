@@ -49,6 +49,6 @@ rust_library(
     # buildifier: leave-alone
     deps = [
         "@rust_client__cfg_if__0_1_10//:cfg_if",
-        "@rust_client__libc__0_2_139//:libc",
+        "@rust_client__libc__0_2_140//:libc",
     ],
 )

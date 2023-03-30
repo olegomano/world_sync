@@ -31,23 +31,43 @@ licenses([
 
 # Generated Targets
 
-rust_library(
-    name = "hermit_abi",
+rust_proc_macro(
+    name = "num_derive",
     srcs = glob(["**/*.rs"]),
     crate_root = "src/lib.rs",
     data = [],
-    edition = "2021",
+    edition = "2018",
     rustc_flags = [
         "--cap-lints=allow",
     ],
     tags = [
         "cargo-raze",
-        "crate-name=hermit-abi",
+        "crate-name=num_derive",
         "manual",
     ],
-    version = "0.2.6",
+    version = "0.3.3",
     # buildifier: leave-alone
     deps = [
-        "@rust_client__libc__0_2_140//:libc",
+        "@rust_client__proc_macro2__1_0_49//:proc_macro2",
+        "@rust_client__quote__1_0_23//:quote",
+        "@rust_client__syn__1_0_107//:syn",
     ],
 )
+
+# Unsupported target "empty_enum" with type "test" omitted
+
+# Unsupported target "issue-6" with type "test" omitted
+
+# Unsupported target "issue-9" with type "test" omitted
+
+# Unsupported target "newtype" with type "test" omitted
+
+# Unsupported target "newtype-2015" with type "test" omitted
+
+# Unsupported target "num_derive_without_num" with type "test" omitted
+
+# Unsupported target "trivial" with type "test" omitted
+
+# Unsupported target "trivial-2015" with type "test" omitted
+
+# Unsupported target "with_custom_values" with type "test" omitted

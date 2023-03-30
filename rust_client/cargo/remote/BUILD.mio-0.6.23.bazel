@@ -58,7 +58,7 @@ rust_library(
         "@rust_client__iovec__0_1_4//:iovec",
         "@rust_client__log__0_4_17//:log",
         "@rust_client__net2__0_2_38//:net2",
-        "@rust_client__slab__0_4_7//:slab",
+        "@rust_client__slab__0_4_8//:slab",
     ] + selects.with_or({
         (
             "@rules_rust//rust/platform:i686-apple-darwin",
@@ -80,7 +80,7 @@ rust_library(
             "@rules_rust//rust/platform:x86_64-linux-android",
             "@rules_rust//rust/platform:x86_64-unknown-freebsd",
         ): [
-            "@rust_client__libc__0_2_139//:libc",
+            "@rust_client__libc__0_2_140//:libc",
         ],
         "//conditions:default": [],
     }) + selects.with_or({
